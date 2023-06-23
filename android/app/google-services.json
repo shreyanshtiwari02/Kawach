@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1098239021073",
+    "project_id": "womenapp-3a0a1",
+    "storage_bucket": "womenapp-3a0a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098239021073:android:ee02a03083a61f8bb0a1b0",
+        "android_client_info": {
+          "package_name": "com.example.kawach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098239021073-6p5jmg565l8f2tdsgkc2pkumj4nd6bkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kawach",
+            "certificate_hash": "326e66a4fb99404fccd494c48f5d47ecb56a85a7"
+          }
+        },
+        {
+          "client_id": "1098239021073-uvjkc1lmuol3tp47i8fak9hiv7gpi4e6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKxy4xkyDjeUERk2N3qiW3NWzEv9VOOkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098239021073-uvjkc1lmuol3tp47i8fak9hiv7gpi4e6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
