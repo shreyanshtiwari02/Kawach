@@ -1,31 +1,104 @@
-import 'package:firebase_auth/firebase_auth.dart';
+//home page
 import 'package:flutter/material.dart';
-import 'package:kawach/screen/signin_screen.dart';
-import 'package:kawach/services/firebase_services.dart';
+import '../reusable_widgets/icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final List<String> _list = ['assets/images/rectangle2.svg', 'assets/images/rectangle2.svg'];
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: Text("Logout"),
-          onPressed: () async {
-            await FirebaseServices().googleSignOut();
-            FirebaseAuth.instance.signOut().then((value) {
-              print("Signed Out");
-            });
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignInScreen()));
-          },
-        ),
+      backgroundColor: Color(0xFFEADAF5) ,
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [];
+        },
+        body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          // uppermost margin
+          SizedBox(
+            height: 30,
+          ),
+
+          // USER NAME field
+          Text("USER NAME",
+              style: TextStyle(
+                color: Color(0xFF0F2851),
+                // fontFamily: 'Roboto',
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              )),
+
+          // space
+
+          SizedBox(
+            height: 30,
+          ),
+
+          // articles/stories
+          Container(
+            height: 200,
+            child: PageView.builder(
+              itemBuilder: (context, index) {
+                return Center(
+                    child: Container(
+                      // padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                      child: SvgPicture.asset(_list[index % _list.length],
+                          fit: BoxFit.contain),
+                    ));
+              },
+            ),
+          ),
+          //spacing
+          SizedBox(
+            height: 35,
+          ),
+          //search bar
+          SvgPicture.asset("assets/images/search.svg"),
+
+          //space
+          SizedBox(
+            height: 45,
+          ),
+          //
+          SingleChildScrollView(
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                    SizedBox(height: 4),
+                    HeartButton(),
+                  ],
+                ),
+                SizedBox(height: 20),
+              ])),
+// bottom navigation bar
+        ]),
       ),
     );
   }

@@ -3,10 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kawach/screen/reset_password.dart';
 import 'package:kawach/screen/signup_screen.dart';
-
+import 'main_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
 import '../services/firebase_services.dart';
-import 'home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -59,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     password: _passwordTextController.text)
                     .then((value) {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                      MaterialPageRoute(builder: (context) => MainPage()));
                 }).onError((error, stackTrace) {
                   print("Error ${error.toString()}");
                 });
@@ -114,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return ElevatedButton(onPressed:()async {
       await FirebaseServices().signInWithGoogle();
       Navigator.push(context,
-      MaterialPageRoute(builder: (context) => HomeScreen()));
+      MaterialPageRoute(builder: (context) => MainPage()));
       },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
