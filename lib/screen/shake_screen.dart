@@ -5,10 +5,6 @@ import 'package:shake/shake.dart';
 
 class ShakeScreen extends StatefulWidget {
   const ShakeScreen({Key? key}) : super(key: key);
-
-
-
-
   @override
   State<ShakeScreen> createState() => _MyHomePageState();
 }
@@ -19,7 +15,6 @@ class _MyHomePageState extends State<ShakeScreen> {
   final Uri hospital_url = Uri.parse('https://www.google.com/maps/dir/?api=1&destination=Nearest+hospital');
 
   Future<void> google_maps_launcher(Uri destination) async {
-
     if (!await launchUrl(
         destination,
         mode: LaunchMode.externalNonBrowserApplication
@@ -31,27 +26,17 @@ class _MyHomePageState extends State<ShakeScreen> {
   }
 
   //shake
-  late ShakeDetector shakeDetector;
+
   int counter=0;
   @override
   void initState() {
     super.initState();
-    shakeDetector = ShakeDetector.autoStart(
-      shakeThresholdGravity: 2.5, // Shake intensity threshold
-      onPhoneShake: () {
-        google_maps_launcher(metro_url);
-        setState(() {
-          //  google_maps_launcher(police_url);
-          counter++;
-        });
-      },
-    );
   }
 
 
   @override
   void dispose() {
-    shakeDetector.stopListening();
+
     super.dispose();
   }
 
@@ -59,24 +44,22 @@ class _MyHomePageState extends State<ShakeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("shake"),
-      ),
+      backgroundColor: const Color(0xFFEADAF5),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
               onPressed:(){ google_maps_launcher(police_url);},
-              child: Text('Nearest Police Station'),
+              child: const Text('Nearest Police Station'),
             ),
             ElevatedButton(
               onPressed:(){ google_maps_launcher(metro_url);},
-              child: Text('Nearest Metro Station'),
+              child: const Text('Nearest Metro Station'),
             ),
             ElevatedButton(
               onPressed:(){ google_maps_launcher(hospital_url);},
-              child: Text('Nearest Hospital'),
+              child: const Text('Nearest Hospital'),
             ),
             Text("$counter"),
           ],
