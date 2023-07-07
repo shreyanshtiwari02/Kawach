@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../screen/signin_screen.dart';
 
 //edit profile
 class edit_profile extends StatelessWidget {
@@ -8,7 +11,7 @@ class edit_profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(left: 35, right: 35, bottom: 10),
-      color: Color(0xb3c690d0),
+      color: Colors.white70,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: const ListTile(
         leading: Icon(
@@ -112,20 +115,28 @@ class logout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white70,
-      margin: const EdgeInsets.only(left: 35, right: 35, bottom: 10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      child: const ListTile(
-        leading: Icon(
-          Icons.logout,
-          color: Colors.black54,
+    return InkWell(
+      onTap: (){
+        FirebaseAuth.instance.signOut().then((value){
+          Navigator.of(context, rootNavigator: true).pushReplacement(
+              MaterialPageRoute(builder: (context) => SignInScreen()));
+        });
+      },
+      child: Card(
+        color: Colors.white70,
+        margin: const EdgeInsets.only(left: 35, right: 35, bottom: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        child: const ListTile(
+          leading: Icon(
+            Icons.logout,
+            color: Colors.black54,
+          ),
+          title: Text(
+            'Logout',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          trailing: Icon(Icons.arrow_forward_ios_outlined),
         ),
-        title: Text(
-          'Logout',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        trailing: Icon(Icons.arrow_forward_ios_outlined),
       ),
     );
   }

@@ -1,8 +1,18 @@
+import 'dart:async';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kawach/screen/reset_password.dart';
 import 'package:kawach/screen/signup_screen.dart';
+import 'package:kawach/services/notification_service.dart';
+
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'main_page.dart';
 import '../reusable_widgets/reusable_widget.dart';
 import '../services/firebase_services.dart';
@@ -15,12 +25,23 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
+  int count = 0;
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -40,18 +61,18 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(
                 height: 30,
               ),
-              reusableTextField("Enter UserName", Icons.person_outline, false,
+              reusableTextField("Enter UserName }", Icons.person_outline, false,
                   _emailTextController),
               const SizedBox(
                 height: 20,
               ),
-              reusableTextField("Enter Password", Icons.lock_outline, true,
+              reusableTextField("Enter Password }", Icons.lock_outline, true,
                   _passwordTextController),
               const SizedBox(
                 height: 5,
               ),
               forgetPassword(context),
-              firebaseUIButton(context, "Sign In", () {
+              firebaseUIButton(context, "Sign In $count", () {
                 FirebaseAuth.instance
                     .signInWithEmailAndPassword(
                     email: _emailTextController.text,
@@ -77,7 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have account?",
+        const Text("Don't have account? ",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
@@ -100,7 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
       alignment: Alignment.bottomRight,
       child: TextButton(
         child: const Text(
-          "Forgot Password?",
+          "Forgot Password? ",
           style: TextStyle(color: Colors.white70),
           textAlign: TextAlign.right,
         ),

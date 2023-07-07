@@ -15,6 +15,7 @@ class _Profile_PageState extends State<ProfilePage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          backgroundColor: const Color(0xFFEADAF5),
           body: Container(
             color: Colors.white54,
             child: Column(
