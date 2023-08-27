@@ -44,6 +44,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState()  {
+    NotificationController.startListeningNotificationEvents();
     _initURIHandler();
     _incomingLinkHandler();
     _configureShakeDetector();
@@ -84,16 +85,18 @@ class _MainPageState extends State<MainPage> {
         }
       },
     );
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: onActionReceivedMethod,
-    );
+
+
     super.initState();
   }
+
   void _configureShakeDetector() {
     _shakeDetector = ShakeDetector.autoStart(
       shakeThresholdGravity: 2.5, // Adjust the gravity value here
       onPhoneShake: () {
-        createShakeNotification();
+        NotificationController.createNewNotification();
+
+        // createShakeNotification();
         google_maps_launcher(hospital_url);
         setState(() {
         });
@@ -190,15 +193,16 @@ class _MainPageState extends State<MainPage> {
 
 
    static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
-    print("here ......................");
-    print(MyApp.navigatorKey);
-    print(MyApp.navigatorKey.currentContext);
-     MyApp.navigatorKey.currentState?.push(
-       MaterialPageRoute(
-         builder: (_) =>  ShakeScreen(),
-       ),
-     );
-     print("here again ....................");
+
+    // print("here ......................");
+    // print(MyApp.navigatorKey);
+    // print(MyApp.navigatorKey.currentContext);
+    //  MyApp.navigatorKey.currentState?.push(
+    //    MaterialPageRoute(
+    //      builder: (_) =>  ShakeScreen(),
+    //    ),
+    //  );
+    //  print("here again ....................");
   }
 
   final items =  [

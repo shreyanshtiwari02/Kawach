@@ -44,11 +44,13 @@ dependencies:
   shake: ^2.2.0
   curved_navigation_bar: ^1.0.3
   provider: ^6.0.5
-  http: ^1.0.0
+  http: ^1.1.0
   lottie: ^2.4.0
   fluttertoast: ^8.2.2
   uni_links: ^0.5.1
   awesome_notifications: ^0.7.4+1
+  carousel_slider: ^4.2.1
+  table_calendar: ^3.0.8
 
 
 dev_dependencies:
