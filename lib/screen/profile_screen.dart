@@ -40,7 +40,8 @@ class _Profile_PageState extends State<ProfilePage> {
                   children: const [
                     CircleAvatar(
                       maxRadius: 65,
-                      foregroundImage: AssetImage("assets/erza.jpg"),
+                      foregroundImage: AssetImage("assets/images/google.png"),
+                      backgroundColor: Colors.white,
                     ),
                   ],
                 ),

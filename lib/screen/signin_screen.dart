@@ -61,18 +61,18 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(
                 height: 30,
               ),
-              reusableTextField("Enter UserName }", Icons.person_outline, false,
+              reusableTextField("Enter UserName", Icons.person_outline, false,
                   _emailTextController),
               const SizedBox(
                 height: 20,
               ),
-              reusableTextField("Enter Password }", Icons.lock_outline, true,
+              reusableTextField("Enter Password", Icons.lock_outline, true,
                   _passwordTextController),
               const SizedBox(
                 height: 5,
               ),
               forgetPassword(context),
-              firebaseUIButton(context, "Sign In $count", () {
+              firebaseUIButton(context, "Sign In", () {
                 FirebaseAuth.instance
                     .signInWithEmailAndPassword(
                     email: _emailTextController.text,
@@ -85,6 +85,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 });
               }),
               googleButton(),
+              const SizedBox(
+                height: 5,
+              ),
               signUpOption()
             ],
           ),
@@ -98,6 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        
         const Text("Don't have account? ",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
@@ -132,9 +136,13 @@ class _SignInScreenState extends State<SignInScreen> {
   }
   Widget googleButton(){
     return ElevatedButton(onPressed:()async {
-      await FirebaseServices().signInWithGoogle();
-      Navigator.push(context,
-      MaterialPageRoute(builder: (context) => MainPage()));
+      // print("here");
+      // print(FirebaseServices().signInWithGoogle().toString());
+    await FirebaseServices().signInWithGoogle().then((value) {
+                if(value)Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MainPage()));
+                }
+                );
       },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
